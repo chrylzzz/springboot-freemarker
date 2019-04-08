@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<role>
+    <div>@#@32432432432</div>
+    <#assign var="hello everyone"/>
+    <font size="18px">${var}</font>
+    <br>
+
+    <div>
+        <ul>
+            <#list userList as item>
+                <font color="#dc143c">
+                    ${(item.username)!}
+                </font>
+                <br>
+            </#list>
+        </ul>
+        <br>
+        <ul>
+            <#list map?keys as key>
+                ${key}:${map[key]}
+            </#list>
+            <br>
+        </ul>
+    </div>
+    <div>
+        <#assign a='hello'></#assign>
+        <#assign a='word'></#assign>
+        <font color="#dc143c">${a+b}</font>
+        ${(a+b)?substring(0,5)}
+    </div>
+
+    <!--自定义指令
+    输入参数：
+        user就是id
+        role就是拥有什么角色
+    输出参数：
+        result1，result2就是返回值，1代表用户是不是拥有admin角色，返回布尔类型
+                                    2代表代表拥有的权限，返回list，看拥有的权限
+    入参和出参用;隔开，入参key=value
+                    出参逗号隔开
+    -->
+    <div>
+        <@role user='123456' role='admin';result1,result2>
+        <#if result1>
+            用户角色是：admin
+        </#if>
+        <#list result2 as item>
+            用户权限是：${item},
+        </#list>
+        </if>
+        </@role>
+</div>
+
+</body>
+</html>
